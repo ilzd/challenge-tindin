@@ -6,13 +6,14 @@ window.onload = function () {
         type: Phaser.AUTO,
         width: 800,
         height: 600,
-        scene: [MainScene],
         physics: {
-            default: 'arcade', //the physics engine the game will use
+            default: 'arcade',
             arcade: {
+                gravity: { y: 0 },
                 debug: false
             }
-        }
+        },
+        scene: [MainScene, ShopScene, JobScene, HouseScene]
     }
 
     game = new Phaser.Game(config);

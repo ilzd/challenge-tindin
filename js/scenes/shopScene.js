@@ -1,56 +1,25 @@
-class MainScene extends Phaser.Scene {
+class ShopScene extends Phaser.Scene {
     constructor() {
-        super('MainScene');
+        super('ShopScene');
         this.character;
 
-        //Possíveis areas de surgimento dependendo de onde o jogador veio
-        this.spawnPoints = {
-            fromShop: { x: 200, y: 335 },
-            fromJob: {x: 450, y: 160 },
-            fromHouse: { x: 660, y: 465 }
-        }
-
         //O local onde o personagem será criado ao executar esta cena
-        this.spawnPoint = { x: 415, y: 500 };
+        this.spawnPoint = { x: 600, y: 400 };
 
         this.mapData;
-        
+
         //Coordenadas das áreas de transiçãoa para sair desta cena
         this.sceneTriggers = [
             {
-                pos: { x: 140, y: 335 },
+                pos: { x: 660, y: 440 },
                 size: { w: 30, h: 30 },
-                scene: 'ShopScene'
-            },
-            {
-                pos: { x: 450, y: 95 },
-                size: { w: 30, h: 30 },
-                scene: 'JobScene'
-            },
-            {
-                pos: { x: 690, y: 370 },
-                size: { w: 30, h: 30 },
-                scene: 'HouseScene'
+                scene: 'MainScene'
             },
         ];
     }
 
     //Callback inicial da cena
     init(data) {
-        if (data != null) {
-            switch (data.from) {
-                case 'Shop':
-                    this.spawnPoint = this.spawnPoints.fromShop;
-                    break;
-                case 'Job':
-                    this.spawnPoint = this.spawnPoints.fromJob;
-                    break;
-                case 'House':
-                    this.spawnPoint = this.spawnPoints.fromHouse;
-                default:
-                    break;
-            }
-        }
     }
 
     //Pré carrega todos os assets necessários na Scene
@@ -58,8 +27,8 @@ class MainScene extends Phaser.Scene {
         this.load.spritesheet('character', 'assets/images/character.png', { frameWidth: 48, frameHeight: 64 }, 12);
         //this.load.audio('bgmusic', 'assets/audio/bgmusic.mp3');
 
-        this.load.tilemapTiledJSON('mainmap', 'assets/images/tilemaps/maintilemap.json');
-        this.load.image('maintiles', 'assets/images/tilemaps/tileset.png');
+        this.load.tilemapTiledJSON('shopmap', 'assets/images/tilemaps/shoptilemap.json');
+        this.load.image('shoptiles', 'assets/images/tilemaps/tileset.png');
     }
 
     //Executa uma única vez quando a Scene é startada
@@ -76,7 +45,7 @@ class MainScene extends Phaser.Scene {
         //Define um overlap entre o personagem e cada área de ativação de troca de cena
         for (let i = 0; i < this.sceneTriggers.length; i++) {
             this.physics.add.overlap(this.character, this.sceneTriggers[i].trigger, function () {
-                this.scene.start(this.sceneTriggers[i].scene);
+                this.scene.start(this.sceneTriggers[i].scene, {from: 'Shop'});
             }, null, this);
         }
     }
@@ -88,8 +57,8 @@ class MainScene extends Phaser.Scene {
 
     //Cria o mapa a partir do tilemap e tileset
     buildMap() {
-        let map = this.make.tilemap({ key: 'mainmap' });
-        let tileset = map.addTilesetImage('tileset', 'maintiles');
+        let map = this.make.tilemap({ key: 'shopmap' });
+        let tileset = map.addTilesetImage('tileset', 'shoptiles');
         this.mapData = {
             map: map,
             tileset: tileset,
@@ -101,7 +70,7 @@ class MainScene extends Phaser.Scene {
 
     //Cria os elementos do HUD
     buildHUD() {
-        this.cashText = this.add.text(5, 5, '$: ' + 0);
+        this.cashText = this.add.text(5, 5, '$: ' + 1);
         this.cashText.setScrollFactor(0);
     }
 

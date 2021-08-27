@@ -51,6 +51,7 @@ class Character extends Phaser.Physics.Arcade.Sprite {
         });
     }
 
+    //Define tudo que precisa ser atualizado a cada frame
     update() {
         this.move();
     }
