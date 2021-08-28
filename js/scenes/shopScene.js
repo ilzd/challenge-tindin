@@ -9,7 +9,7 @@ class ShopScene extends GameScene {
         this.spawnPoint = { x: 600, y: 400 }; //Definindo o local de surgimento padrão da cena
 
         //Adicionando as transições de cena
-        this.addSceneTrigger(650, 410, 30, 30, 'MainScene');
+        this.addSceneTrigger(650, 415, 30, 60, 'MainScene');
     }
 
     //Callback inicial da cena

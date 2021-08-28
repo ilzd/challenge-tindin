@@ -21,7 +21,7 @@ class GameScene extends Phaser.Scene {
     }
 
     //Adiciona um novo spawn point
-    addSpawnPoint(from_, x_, y_){
+    addSpawnPoint(from_, x_, y_) {
         this.spawnPoints.push({
             from: from_,
             x: x_,
@@ -31,10 +31,16 @@ class GameScene extends Phaser.Scene {
 
     //Callback inicial da cena
     init(data) {
-        if (data != null) {
-            for(let i = 0; i < this.spawnPoints.length; i++){
+        //Recuperando o dinheiro do player
+        if (data.money != null) {
+            this.money = data.money;
+        }
+
+        //Decidindo o spawn point adequado dependendo de qual cena o player veio
+        if (data.from != null) {
+            for (let i = 0; i < this.spawnPoints.length; i++) {
                 let spawn = this.spawnPoints[i];
-                if(spawn.from === data.from){
+                if (spawn.from === data.from) {
                     this.spawnPoint.x = spawn.x;
                     this.spawnPoint.y = spawn.y;
                 }
@@ -64,7 +70,7 @@ class GameScene extends Phaser.Scene {
 
         for (let i = 0; i < this.sceneTriggers.length; i++) {
             this.physics.add.overlap(this.character, this.sceneTriggers[i].trigger, function () {
-                this.scene.start(this.sceneTriggers[i].scene, {from: this.key});
+                this.scene.start(this.sceneTriggers[i].scene, { from: this.key, money: this.money });
             }, null, this);
         }
 
@@ -104,8 +110,8 @@ class GameScene extends Phaser.Scene {
         this.HUD.add(coinSprite);
 
         //Adicionando o texto referente ao dinheiro
-        this.moneyText = this.add.text(90, 42, this.money, { fontSize: 50 });
-        this.moneyText.setOrigin(0.5, 0.5);
+        this.moneyText = this.add.text(70, 42, this.money, { fontSize: 40, backgroundColor: '#0002' });
+        this.moneyText.setOrigin(0, 0.5);
         this.HUD.add(this.moneyText);
 
         //Posisionando o HUD absolutamente
@@ -125,13 +131,28 @@ class GameScene extends Phaser.Scene {
         }
     }
 
-    //Atualiza o texto do dinheiro exibido para o player
-    updateMoneyText() {
+    //Player ganhar dinheiro e atualiza o HUD
+    gainMoney(amount) {
+        this.money += amount;
         this.moneyText.setText(this.money);
         this.tweens.add({
             targets: this.moneyText,
-            scale: { start: 3, to: 1 },
+            scale: { start: 5, to: 1 },
             duration: 1000,
+            fill: 0x00FF00,
+            ease: 'Cubic'
+        });
+    }
+
+    //Player gastar dinheiro e atualiza o HUD
+    spendMoney(amount) {
+        this.money -= amount;
+        this.moneyText.setText(this.money);
+        this.tweens.add({
+            targets: this.moneyText,
+            scale: { start: 0.2, to: 1 },
+            duration: 1000,
+            fill: 0x00FF00,
             ease: 'Cubic'
         });
     }

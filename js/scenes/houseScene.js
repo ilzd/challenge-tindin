@@ -9,7 +9,7 @@ class HouseScene extends GameScene {
         this.spawnPoint = { x: 320, y: 610 }; //Definindo o local de surgimento padrão da cena
 
         //Adicionando as transições de cena
-        this.addSceneTrigger(275, 620, 30, 30, 'MainScene');
+        this.addSceneTrigger(280, 625, 30, 40, 'MainScene');
     }
 
     //Callback inicial da cena

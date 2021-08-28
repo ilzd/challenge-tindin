@@ -6,20 +6,19 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
         this.scene.physics.world.enable(this);
 
-        //Adiciona esta instância na cena
-        this.scene.add.existing(this);
+        this.scene.add.existing(this);  //Adiciona esta instância na cena
 
-        //Velocidade de transição entre os frames do spritesheet
-        this.animFrameRate = 10;
+        this.animFrameRate = 10; //Velocidade de transição entre os frames do spritesheet
 
         this.defineAnimations();
 
-        //Velocidade de movimento do personagem
-        this.moveSpeed = 200;
+        this.moveSpeed = 200; //Velocidade de movimento do personagem
 
         //Redimensiona e reposiciona o body pra colisão ficar nos pés
         this.body.setSize(25, 25);
         this.body.setOffset(this.body.offset.x, 40);
+
+        this.busy = false; //Se true, o personagem não pode andar nem interagir com nada
     }
 
     //Define as animações de movimentação para todas as direções
@@ -57,7 +56,9 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
     //Define tudo que precisa ser atualizado a cada frame
     update() {
-        this.move();
+        if (!this.busy) {
+            this.move();
+        }
     }
 
     move() {
@@ -107,5 +108,10 @@ class Character extends Phaser.Physics.Arcade.Sprite {
                 this.anims.play('idle');
             }
         }
+    }
+
+    setBusy(isBusy) {
+        this.busy = isBusy;
+        if (isBusy) this.anims.play('idle')
     }
 }
