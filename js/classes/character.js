@@ -16,6 +16,10 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
         //Velocidade de movimento do personagem
         this.moveSpeed = 200;
+
+        //Redimensiona e reposiciona o body pra colisão ficar nos pés
+        this.body.setSize(25, 25);
+        this.body.setOffset(this.body.offset.x, 40);
     }
 
     //Define as animações de movimentação para todas as direções
