@@ -1,5 +1,6 @@
 var game;
 var config;
+
 this.save = {
     money: 0,
     itensBought: {
@@ -37,7 +38,7 @@ window.onload = function () {
                 debug: false
             }
         },
-        scene: [MainScene, ShopScene, JobScene, HouseScene]
+        scene: [StartScene, MainScene, ShopScene, JobScene, HouseScene]
     }
 
     game = new Phaser.Game(config);

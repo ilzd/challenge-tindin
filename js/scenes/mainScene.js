@@ -21,7 +21,7 @@ class MainScene extends GameScene {
     }
 
     //Callback inicial da cena
-    init(data){
+    init(data) {
         super.init(data);
     }
 

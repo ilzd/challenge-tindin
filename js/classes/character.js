@@ -69,9 +69,12 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
     //Define tudo que precisa ser atualizado a cada frame
     update() {
+        //Move apenas se o personagem não esta ocupadao
         if (!this.busy) {
             this.move();
         }
+
+        //Se o personagem estiver falando, atualize a posição do balão de fala
         if(this.speaking){
             this.speakStage++;
             this.speakBubble.x = this.x;
@@ -105,7 +108,6 @@ class Character extends Phaser.Physics.Arcade.Sprite {
         if (velocity.x != 0 || velocity.y != 0) {
             velocity.normalize();
             if(!this.stepSound.isPlaying) this.stepSound.play();
-        } else {
         }
 
         //Escala ele de acordo com a velocidade do personagem
@@ -139,6 +141,7 @@ class Character extends Phaser.Physics.Arcade.Sprite {
         if (isBusy) this.anims.play('idle')
     }
 
+    //Seta o que é necessário para o balão de fala aparecer
     speak(text) {
         this.speakStage = 0;
         this.speaking = true;

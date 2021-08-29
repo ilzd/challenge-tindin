@@ -11,6 +11,7 @@ class HouseScene extends GameScene {
         //Adicionando as transições de cena
         this.addSceneTrigger(280, 625, 30, 40, 'MainScene');
 
+        //Setando os locais para cada tipo de item
         this.itemSpots = {
             table: { x: 640, y: 590, w: 130, h: 100 },
             bed: { x: 337, y: 337, w: 100, h: 100 },
@@ -79,6 +80,7 @@ class HouseScene extends GameScene {
             this.place();
         }, this);
 
+        //Criando os bodies para cada item para depois só trocar as textura
         this.table = this.physics.add.staticImage(this.itemSpots.table.x, this.itemSpots.table.y);
         this.bed = this.physics.add.staticImage(this.itemSpots.bed.x, this.itemSpots.bed.y);
         this.tv = this.physics.add.staticImage(this.itemSpots.tv.x, this.itemSpots.tv.y);
@@ -86,6 +88,7 @@ class HouseScene extends GameScene {
         this.mat = this.physics.add.staticImage(this.itemSpots.mat.x, this.itemSpots.mat.y);
         this.closet = this.physics.add.staticImage(this.itemSpots.closet.x, this.itemSpots.closet.y);
 
+        //Texto auxiliar sobre posicionar ou trocar item
         this.placeText = this.add.text(0, 0, '', { fontSize: 25, color: '#FFF', backgroundColor: '#000A' });
         this.placeText.setOrigin(0.5, 0.5);
         this.placeText.setDepth(1);
@@ -100,7 +103,7 @@ class HouseScene extends GameScene {
         this.checkAreaOverlap();
     }
 
-    //Cria as áreas onde o jogador pode interagir para posicionar seus itens
+    //Cria as áreas onde o jogador pode interagir para posicionar seus itens assim como um indicador visual
     createItemAreas() {
         this.tableArea = this.physics.add.sprite(this.itemSpots.table.x, this.itemSpots.table.y);
         this.tableArea.body.setSize(this.itemSpots.table.w, this.itemSpots.table.h);
