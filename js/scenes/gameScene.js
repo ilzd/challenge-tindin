@@ -5,7 +5,6 @@ class GameScene extends Phaser.Scene {
         this.key = data.key; //Key da cena utilizada para se comunicar com outras cenas
         this.tilemapFile = data.tilemapFile; //Nome do arquivo do tilemap desta cena
         this.tilesetFile = data.tilesetFile; //Nome do arquivo do tilesede desta cena
-        this.money = 0; //Dinheiro do player
         this.sceneTriggers = []; //Array de triggers de transição entre cenas
         this.spawnPoint = { x: 0, y: 0 }; //Local de surgimento do personagem
         this.spawnPoints = []; //Possiveis locais de surgimento dependendo de que cena o player esta vindo
@@ -31,11 +30,6 @@ class GameScene extends Phaser.Scene {
 
     //Callback inicial da cena
     init(data) {
-        //Recuperando o dinheiro do player
-        if (data.money != null) {
-            this.money = data.money;
-        }
-
         //Decidindo o spawn point adequado dependendo de qual cena o player veio
         if (data.from != null) {
             for (let i = 0; i < this.spawnPoints.length; i++) {
@@ -70,7 +64,7 @@ class GameScene extends Phaser.Scene {
 
         for (let i = 0; i < this.sceneTriggers.length; i++) {
             this.physics.add.overlap(this.character, this.sceneTriggers[i].trigger, function () {
-                this.scene.start(this.sceneTriggers[i].scene, { from: this.key, money: this.money });
+                this.scene.start(this.sceneTriggers[i].scene, { from: this.key });
             }, null, this);
         }
 
@@ -110,7 +104,7 @@ class GameScene extends Phaser.Scene {
         this.HUD.add(coinSprite);
 
         //Adicionando o texto referente ao dinheiro
-        this.moneyText = this.add.text(70, 42, this.money, { fontSize: 40, backgroundColor: '#0002' });
+        this.moneyText = this.add.text(70, 42, save.money, { fontSize: 40, backgroundColor: '#0002' });
         this.moneyText.setOrigin(0, 0.5);
         this.HUD.add(this.moneyText);
 
@@ -133,11 +127,11 @@ class GameScene extends Phaser.Scene {
 
     //Player ganhar dinheiro e atualiza o HUD
     gainMoney(amount) {
-        this.money += amount;
-        this.moneyText.setText(this.money);
+        save.money += amount;
+        this.moneyText.setText(save.money);
         this.tweens.add({
             targets: this.moneyText,
-            scale: { start: 5, to: 1 },
+            scale: { start: 4, to: 1 },
             duration: 1000,
             fill: 0x00FF00,
             ease: 'Cubic'
@@ -146,11 +140,11 @@ class GameScene extends Phaser.Scene {
 
     //Player gastar dinheiro e atualiza o HUD
     spendMoney(amount) {
-        this.money -= amount;
-        this.moneyText.setText(this.money);
+        save.money -= amount;
+        this.moneyText.setText(save.money);
         this.tweens.add({
             targets: this.moneyText,
-            scale: { start: 0.2, to: 1 },
+            scale: { start: 0.25, to: 1 },
             duration: 1000,
             fill: 0x00FF00,
             ease: 'Cubic'

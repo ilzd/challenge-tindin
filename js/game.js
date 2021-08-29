@@ -1,5 +1,12 @@
 var game;
 var config;
+this.save = {
+    money: 1000,
+    itensBought: {
+        tables: [],
+        beds: [],
+    }
+}
 
 window.onload = function () {
     config = {
