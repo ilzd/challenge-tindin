@@ -2,7 +2,7 @@ class JobScene extends GameScene {
     constructor() {
         super({
             key: 'JobScene',
-            tilemapFile: 'jobtilemap',
+            tilemapFile: 'jobscenetilemap',
             tilesetFile: 'tileset'
         });
 
@@ -41,7 +41,7 @@ class JobScene extends GameScene {
         this.jobArea.alpha = 0.3;
 
         //Criando o texto informando que o jogador pode trabalhar
-        this.canWorkText = this.add.text(this.jobArea.x, this.jobArea.y, "Pressione E para trabalhar!", { fontSize: 25, color: '#FFF', backgroundColor: '#000A' });
+        this.canWorkText = this.add.text(this.jobArea.x, this.jobArea.y, 'Pressione E para trabalhar!', { fontSize: 25, color: '#FFF', backgroundColor: '#000A' });
         this.canWorkText.setOrigin(0.5, 0.5);
 
         //Se o jogador pressionar a tecla E, ele começa a trabalhar

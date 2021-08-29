@@ -55,6 +55,7 @@ class GameScene extends Phaser.Scene {
 
     //Executa uma vez no inicio da cena
     create() {
+        let cache = 
         this.buildMap();
         this.buildHUD();
         this.setSceneTriggers();

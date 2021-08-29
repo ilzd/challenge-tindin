@@ -2,7 +2,7 @@ class ShopScene extends GameScene {
     constructor() {
         super({
             key: 'ShopScene',
-            tilemapFile: 'shoptilemap',
+            tilemapFile: 'shopscenetilemap',
             tilesetFile: 'tileset'
         });
 
@@ -13,12 +13,20 @@ class ShopScene extends GameScene {
 
         //Lista de itens disponíveis
         this.itemsForSale = [
-            { fileName: 'table1', pos: { x: 100, y: 600 }, price: 200, type: 'TABLE' },
-            { fileName: 'table2', pos: { x: 100, y: 400 }, price: 200, type: 'TABLE' },
-            { fileName: 'table3', pos: { x: 100, y: 200 }, price: 200, type: 'TABLE' },
-            { fileName: 'bed1', pos: { x: 300, y: 600 }, price: 200, type: 'BED' },
-            { fileName: 'bed2', pos: { x: 300, y: 400 }, price: 200, type: 'BED' },
-            { fileName: 'bed3', pos: { x: 300, y: 200 }, price: 200, type: 'BED' },
+            { fileName: 'table1', pos: { x: 115, y: 600 }, price: 200, type: 'TABLE' },
+            { fileName: 'table2', pos: { x: 115, y: 490 }, price: 200, type: 'TABLE' },
+            { fileName: 'table3', pos: { x: 115, y: 380 }, price: 200, type: 'TABLE' },
+            { fileName: 'bed1', pos: { x: 400, y: 585 }, price: 200, type: 'BED' },
+            { fileName: 'bed2', pos: { x: 500, y: 585 }, price: 200, type: 'BED' },
+            { fileName: 'bed3', pos: { x: 600, y: 585 }, price: 200, type: 'BED' },
+            { fileName: 'tv1', pos: { x: 500, y: 230 }, price: 200, type: 'TV' },
+            { fileName: 'tv2', pos: { x: 600, y: 230 }, price: 200, type: 'TV' },
+            { fileName: 'desk1', pos: { x: 400, y: 230 }, price: 200, type: 'DESK' },
+            { fileName: 'mat1', pos: { x: 250, y: 400 }, price: 200, type: 'MAT' },
+            { fileName: 'mat2', pos: { x: 370, y: 400 }, price: 200, type: 'MAT' },
+            { fileName: 'mat3', pos: { x: 490, y: 400 }, price: 200, type: 'MAT' },
+            { fileName: 'closet1', pos: { x: 115, y: 230 }, price: 200, type: 'CLOSET' },
+            { fileName: 'closet2', pos: { x: 215, y: 230 }, price: 200, type: 'CLOSET' },
         ];
 
         //Areas triggers de compra
@@ -110,6 +118,21 @@ class ShopScene extends GameScene {
         for (let i = 0; i < save.itensBought.tables.length; i++) {
             if (itemName == save.itensBought.tables[i]) return true;
         }
+        for (let i = 0; i < save.itensBought.beds.length; i++) {
+            if (itemName == save.itensBought.beds[i]) return true;
+        }
+        for (let i = 0; i < save.itensBought.tvs.length; i++) {
+            if (itemName == save.itensBought.tvs[i]) return true;
+        }
+        for (let i = 0; i < save.itensBought.desks.length; i++) {
+            if (itemName == save.itensBought.desks[i]) return true;
+        }
+        for (let i = 0; i < save.itensBought.mats.length; i++) {
+            if (itemName == save.itensBought.mats[i]) return true;
+        }
+        for (let i = 0; i < save.itensBought.closets.length; i++) {
+            if (itemName == save.itensBought.closets[i]) return true;
+        }
 
         return false;
     }
@@ -129,6 +152,26 @@ class ShopScene extends GameScene {
                         break;
                     case 'BED':
                         save.itensBought.beds.push(this.itemsForSale[item.itemIndex].fileName);
+                        item.buyArea.destroy();
+                        item.destroy();
+                        break;
+                    case 'TV':
+                        save.itensBought.tvs.push(this.itemsForSale[item.itemIndex].fileName);
+                        item.buyArea.destroy();
+                        item.destroy();
+                        break;
+                    case 'DESK':
+                        save.itensBought.desks.push(this.itemsForSale[item.itemIndex].fileName);
+                        item.buyArea.destroy();
+                        item.destroy();
+                        break;
+                    case 'MAT':
+                        save.itensBought.mats.push(this.itemsForSale[item.itemIndex].fileName);
+                        item.buyArea.destroy();
+                        item.destroy();
+                        break;
+                    case 'CLOSET':
+                        save.itensBought.closets.push(this.itemsForSale[item.itemIndex].fileName);
                         item.buyArea.destroy();
                         item.destroy();
                         break;

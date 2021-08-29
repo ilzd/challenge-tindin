@@ -5,6 +5,18 @@ this.save = {
     itensBought: {
         tables: [],
         beds: [],
+        tvs: [],
+        desks: [],
+        mats: [],
+        closets: [],
+    },
+    itensUsing: {
+        table: null,
+        bed: null,
+        tv: null,
+        desk: null,
+        mat: null,
+        closet: null,
     }
 }
 

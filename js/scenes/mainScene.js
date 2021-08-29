@@ -3,7 +3,7 @@ class MainScene extends GameScene {
     constructor() {
         super({
             key: 'MainScene',
-            tilemapFile: 'maintilemap',
+            tilemapFile: 'mainscenetilemap',
             tilesetFile: 'tileset'
         });
 
