@@ -51,6 +51,8 @@ class GameScene extends Phaser.Scene {
         this.load.image('coin', 'assets/images/coin.png');
 
         this.load.image('debugimage', 'assets/images/debug.png');
+        
+        this.load.audio('step', 'assets/audio/step.mp3');
     }
 
     //Executa uma vez no inicio da cena
@@ -133,7 +135,7 @@ class GameScene extends Phaser.Scene {
         this.moneyText.setText(save.money);
         this.tweens.add({
             targets: this.moneyText,
-            scale: { start: 4, to: 1 },
+            scale: { start: 2.5, to: 1 },
             duration: 1000,
             fill: 0x00FF00,
             ease: 'Cubic'

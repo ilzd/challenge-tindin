@@ -2,7 +2,7 @@ class JobScene extends GameScene {
     constructor() {
         super({
             key: 'JobScene',
-            tilemapFile: 'jobscenetilemap',
+            tilemapFile: 'jobtilemap',
             tilesetFile: 'tileset'
         });
 
@@ -14,7 +14,7 @@ class JobScene extends GameScene {
         this.jobAreaData = { x: 430, y: 280, w: 220, h: 130 }; //Dados da área onde o player pode trabalhar
         this.progressBarData = { x: 430, y: 240, w: 220, h: 30 }; //Posição e tamanho da barra de progresso do trabalho
 
-        this.moneyPerJob = 100; //Remuneração por trabalho
+        this.moneyPerJob = 150; //Remuneração por trabalho
         this.canWork = false; //Se o jogador está na mesa de trabalho
         this.working = false; //Se ele está trabalhando neste momento
         this.workStage = 0; //Estágio de trabalho, incrementa enquanto ele trabalho
@@ -29,6 +29,7 @@ class JobScene extends GameScene {
     //Pré carrega os assets utilizados pela cena
     preload() {
         super.preload();
+        this.load.audio('jobcomplete', 'assets/audio/jobcomplete.mp3');
     }
 
     //Executa uma vez no inicio da cena
@@ -99,6 +100,7 @@ class JobScene extends GameScene {
         this.working = false;
         this.gainMoney(this.moneyPerJob);
         this.character.setBusy(false);
+        this.sound.play('jobcomplete');
 
         //Esconde a barra de progresso
         this.progressBorder.visible = false;

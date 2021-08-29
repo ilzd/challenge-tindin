@@ -2,7 +2,7 @@ class ShopScene extends GameScene {
     constructor() {
         super({
             key: 'ShopScene',
-            tilemapFile: 'shopscenetilemap',
+            tilemapFile: 'shoptilemap',
             tilesetFile: 'tileset'
         });
 
@@ -45,6 +45,8 @@ class ShopScene extends GameScene {
             let item = this.itemsForSale[i];
             this.load.image(item.fileName, 'assets/images/' + item.fileName + '.png');
         }
+
+        this.load.audio('buy', 'assets/audio/buy.mp3');
     }
 
     //Executa uma vez no inicio da cena
@@ -146,6 +148,7 @@ class ShopScene extends GameScene {
             let price = this.itemsForSale[item.itemIndex].price;
             if (save.money >= price) { //Se o player tem dinheiro suficiente
                 this.spendMoney(price);
+                this.sound.play('buy');
                 switch (this.itemsForSale[item.itemIndex].type) { //Checa o tipo de item pra adicionar corretamente no save
                     case 'TABLE':
                         save.itensBought.tables.push(this.itemsForSale[item.itemIndex].fileName);

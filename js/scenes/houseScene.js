@@ -2,7 +2,7 @@ class HouseScene extends GameScene {
     constructor() {
         super({
             key: 'HouseScene',
-            tilemapFile: 'housescenetilemap',
+            tilemapFile: 'housetilemap',
             tilesetFile: 'tileset'
         });
 
@@ -29,6 +29,8 @@ class HouseScene extends GameScene {
     //Pré carrega os assets utilizados pela cena
     preload() {
         super.preload();
+
+        this.load.audio('placeitem', 'assets/audio/place.mp3');
 
         //Carrega os assets das mesas compradas
         for (let i = 0; i < save.itensBought.tables.length; i++) {
@@ -60,8 +62,8 @@ class HouseScene extends GameScene {
             this.load.image(fileName, 'assets/images/' + fileName + '.png');
         }
 
-         //Carrega os assets das closets compradas
-         for (let i = 0; i < save.itensBought.closets.length; i++) {
+        //Carrega os assets das closets compradas
+        for (let i = 0; i < save.itensBought.closets.length; i++) {
             let fileName = save.itensBought.closets[i];
             this.load.image(fileName, 'assets/images/' + fileName + '.png');
         }
@@ -237,11 +239,16 @@ class HouseScene extends GameScene {
             if (save.itensUsing.table == null) {
                 save.itensUsing.table = 0;
                 this.tableAreaDisplay.destroy();
+                this.sound.play('placeitem');
             } else {
-                if(save.itensBought.tables.length == 1) this.character.speak('Eu não tenho outra mesa!');
-                save.itensUsing.table++;
-                if (save.itensUsing.table == save.itensBought.tables.length) {
-                    save.itensUsing.table = 0;
+                if (save.itensBought.tables.length == 1) {
+                    this.character.speak('Eu não tenho outra mesa!');
+                } else {
+                    this.sound.play('placeitem');
+                    save.itensUsing.table++;
+                    if (save.itensUsing.table == save.itensBought.tables.length) {
+                        save.itensUsing.table = 0;
+                    }
                 }
             }
             this.table.destroy();
@@ -254,12 +261,17 @@ class HouseScene extends GameScene {
             }
             if (save.itensUsing.bed == null) {
                 save.itensUsing.bed = 0;
+                this.sound.play('placeitem');
                 this.bedAreaDisplay.destroy();
             } else {
-                if(save.itensBought.beds.length == 1) this.character.speak('Eu não tenho outra cama!');
-                save.itensUsing.bed++;
-                if (save.itensUsing.bed == save.itensBought.beds.length) {
-                    save.itensUsing.bed = 0;
+                if (save.itensBought.beds.length == 1) {
+                    this.character.speak('Eu não tenho outra cama!');
+                } else {
+                    this.sound.play('placeitem');
+                    save.itensUsing.bed++;
+                    if (save.itensUsing.bed == save.itensBought.beds.length) {
+                        save.itensUsing.bed = 0;
+                    }
                 }
             }
             this.bed.destroy();
@@ -272,12 +284,17 @@ class HouseScene extends GameScene {
             }
             if (save.itensUsing.tv == null) {
                 save.itensUsing.tv = 0;
+                this.sound.play('placeitem');
                 this.tvAreaDisplay.destroy();
             } else {
-                if(save.itensBought.tvs.length == 1) this.character.speak('Eu não tenho outra TV!');
-                save.itensUsing.tv++;
-                if (save.itensUsing.tv == save.itensBought.tvs.length) {
-                    save.itensUsing.tv = 0;
+                if (save.itensBought.tvs.length == 1) {
+                    this.character.speak('Eu não tenho outra TV!');
+                } else {
+                    this.sound.play('placeitem');
+                    save.itensUsing.tv++;
+                    if (save.itensUsing.tv == save.itensBought.tvs.length) {
+                        save.itensUsing.tv = 0;
+                    }
                 }
             }
             this.tv.destroy();
@@ -290,12 +307,17 @@ class HouseScene extends GameScene {
             }
             if (save.itensUsing.desk == null) {
                 save.itensUsing.desk = 0;
+                this.sound.play('placeitem');
                 this.deskAreaDisplay.destroy();
             } else {
-                if(save.itensBought.mats.length == 1) this.character.speak('Eu não tenho outra mesinha!');
-                save.itensUsing.desk++;
-                if (save.itensUsing.desk == save.itensBought.desks.length) {
-                    save.itensUsing.desk = 0;
+                if (save.itensBought.desks.length == 1) {
+                    this.character.speak('Eu não tenho outra mesinha!');
+                } else {
+                    this.sound.play('placeitem');
+                    save.itensUsing.desk++;
+                    if (save.itensUsing.desk == save.itensBought.desks.length) {
+                        save.itensUsing.desk = 0;
+                    }
                 }
             }
             this.desk.destroy();
@@ -308,12 +330,17 @@ class HouseScene extends GameScene {
             }
             if (save.itensUsing.mat == null) {
                 save.itensUsing.mat = 0;
+                this.sound.play('placeitem');
                 this.matAreaDisplay.destroy();
             } else {
-                if(save.itensBought.mats.length == 1) this.character.speak('Eu não tenho outro tapete!');
-                save.itensUsing.mat++;
-                if (save.itensUsing.mat == save.itensBought.mats.length) {
-                    save.itensUsing.mat = 0;
+                if (save.itensBought.mats.length == 1) {
+                    this.character.speak('Eu não tenho outro tapete!');
+                } else {
+                    this.sound.play('placeitem');
+                    save.itensUsing.mat++;
+                    if (save.itensUsing.mat == save.itensBought.mats.length) {
+                        save.itensUsing.mat = 0;
+                    }
                 }
             }
             this.mat.destroy();
@@ -326,12 +353,17 @@ class HouseScene extends GameScene {
             }
             if (save.itensUsing.closet == null) {
                 save.itensUsing.closet = 0;
+                this.sound.play('placeitem');
                 this.closetAreaDisplay.destroy();
             } else {
-                if(save.itensBought.closets.length == 1) this.character.speak('Eu não tenho outro armário!');
-                save.itensUsing.closet++;
-                if (save.itensUsing.closet == save.itensBought.closets.length) {
-                    save.itensUsing.closet = 0;
+                if (save.itensBought.closets.length == 1) {
+                    this.character.speak('Eu não tenho outro armário!');
+                } else {
+                    this.sound.play('placeitem');
+                    save.itensUsing.closet++;
+                    if (save.itensUsing.closet == save.itensBought.closets.length) {
+                        save.itensUsing.closet = 0;
+                    }
                 }
             }
             this.closet.destroy();

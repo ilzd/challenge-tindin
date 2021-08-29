@@ -30,6 +30,8 @@ class Character extends Phaser.Physics.Arcade.Sprite {
         this.speaking = false;
         this.speakStage = 0;
         this.speakMaxStage = 100;
+
+        this.stepSound = this.scene.sound.add('step');
     }
 
     //Define as animações de movimentação para todas as direções
@@ -102,6 +104,8 @@ class Character extends Phaser.Physics.Arcade.Sprite {
         //Se a magnitude não for 0, então normaliza o vetor
         if (velocity.x != 0 || velocity.y != 0) {
             velocity.normalize();
+            if(!this.stepSound.isPlaying) this.stepSound.play();
+        } else {
         }
 
         //Escala ele de acordo com a velocidade do personagem
