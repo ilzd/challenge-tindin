@@ -43,6 +43,7 @@ class JobScene extends GameScene {
         //Criando o texto informando que o jogador pode trabalhar
         this.canWorkText = this.add.text(this.jobArea.x, this.jobArea.y, 'Pressione E para trabalhar!', { fontSize: 25, color: '#FFF', backgroundColor: '#000A' });
         this.canWorkText.setOrigin(0.5, 0.5);
+        this.canWorkText.setDepth(1);
 
         //Se o jogador pressionar a tecla E, ele começa a trabalhar
         var keyObj = this.input.keyboard.addKey('E');

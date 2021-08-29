@@ -86,6 +86,7 @@ class HouseScene extends GameScene {
 
         this.placeText = this.add.text(0, 0, '', { fontSize: 25, color: '#FFF', backgroundColor: '#000A' });
         this.placeText.setOrigin(0.5, 0.5);
+        this.placeText.setDepth(1);
         this.placeText.visible = false;
 
         this.createItemAreas();
@@ -176,7 +177,7 @@ class HouseScene extends GameScene {
                 this.placeText.setText('Pressione E para trocar de mesa!');
             }
             this.placeText.x = this.itemSpots.table.x;
-            this.placeText.y = this.itemSpots.table.y - 60;
+            this.placeText.y = this.itemSpots.table.y;
             this.placeText.visible = true;
         } else if (this.physics.overlap(this.character, this.bedArea)) {
             if (save.itensUsing.bed == null) {
@@ -185,7 +186,7 @@ class HouseScene extends GameScene {
                 this.placeText.setText('Pressione E para trocar de cama!');
             }
             this.placeText.x = this.itemSpots.bed.x;
-            this.placeText.y = this.itemSpots.bed.y - 60;
+            this.placeText.y = this.itemSpots.bed.y;
             this.placeText.visible = true;
         } else if (this.physics.overlap(this.character, this.tvArea)) {
             if (save.itensUsing.tv == null) {
@@ -194,7 +195,7 @@ class HouseScene extends GameScene {
                 this.placeText.setText('Pressione E para trocar de TV!');
             }
             this.placeText.x = this.itemSpots.tv.x;
-            this.placeText.y = this.itemSpots.tv.y - 60;
+            this.placeText.y = this.itemSpots.tv.y;
             this.placeText.visible = true;
         } else if (this.physics.overlap(this.character, this.deskArea)) {
             if (save.itensUsing.desk == null) {
@@ -203,7 +204,7 @@ class HouseScene extends GameScene {
                 this.placeText.setText('Pressione E para trocar de móvel!');
             }
             this.placeText.x = this.itemSpots.desk.x;
-            this.placeText.y = this.itemSpots.desk.y - 60;
+            this.placeText.y = this.itemSpots.desk.y;
             this.placeText.visible = true;
         } else if (this.physics.overlap(this.character, this.matArea)) {
             if (save.itensUsing.mat == null) {
@@ -212,7 +213,7 @@ class HouseScene extends GameScene {
                 this.placeText.setText('Pressione E para trocar de tapete!');
             }
             this.placeText.x = this.itemSpots.mat.x;
-            this.placeText.y = this.itemSpots.mat.y - 60;
+            this.placeText.y = this.itemSpots.mat.y;
             this.placeText.visible = true;
         } else if (this.physics.overlap(this.character, this.closetArea)) {
             if (save.itensUsing.closet == null) {
@@ -221,7 +222,7 @@ class HouseScene extends GameScene {
                 this.placeText.setText('Pressione E para trocar de armário!');
             }
             this.placeText.x = this.itemSpots.closet.x;
-            this.placeText.y = this.itemSpots.closet.y - 60;
+            this.placeText.y = this.itemSpots.closet.y;
             this.placeText.visible = true;
         }
     }

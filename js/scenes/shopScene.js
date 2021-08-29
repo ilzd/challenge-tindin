@@ -74,9 +74,11 @@ class ShopScene extends GameScene {
         //Texto instrutivo sobre como comprar e o preço do item
         this.buyText = this.add.text(100, 100, "Pressione E para comprar!", { fontSize: 20, color: '#FFF', backgroundColor: '#000A' });
         this.buyText.setOrigin(0.5, 0.5);
+        this.buyText.setDepth(1);
         this.buyText.visible = false;
         this.priceText = this.add.text(100, 100, "", { fontSize: 20, color: '#FFF', backgroundColor: '#000A' });
         this.priceText.setOrigin(0.5, 0.5);
+        this.priceText.setDepth(1);
         this.priceText.visible = false;
     }
 

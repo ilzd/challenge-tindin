@@ -19,6 +19,8 @@ class Character extends Phaser.Physics.Arcade.Sprite {
         this.body.setOffset(this.body.offset.x, 40);
 
         this.busy = false; //Se true, o personagem não pode andar nem interagir com nada
+
+        this.setDepth(1); //Tras o personagem pra frente dos elementos que serão criados posterioemente
     }
 
     //Define as animações de movimentação para todas as direções

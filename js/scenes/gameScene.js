@@ -55,7 +55,6 @@ class GameScene extends Phaser.Scene {
 
     //Executa uma vez no inicio da cena
     create() {
-        let cache = 
         this.buildMap();
         this.buildHUD();
         this.setSceneTriggers();
@@ -101,12 +100,14 @@ class GameScene extends Phaser.Scene {
 
         //Adicionando o sprite da moedienha
         let coinSprite = this.add.sprite(40, 40, 'coin');
+        coinSprite.setDepth(1);
         coinSprite.displayWidth = coinSprite.displayHeight = 50;
         this.HUD.add(coinSprite);
 
         //Adicionando o texto referente ao dinheiro
         this.moneyText = this.add.text(70, 42, save.money, { fontSize: 40, backgroundColor: '#0002' });
         this.moneyText.setOrigin(0, 0.5);
+        this.moneyText.setDepth(1);
         this.HUD.add(this.moneyText);
 
         //Posisionando o HUD absolutamente
