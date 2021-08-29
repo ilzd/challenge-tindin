@@ -79,14 +79,18 @@ class JobScene extends GameScene {
 
     //Inicia o trabalho caso o player esteja no lugar certo e ele já não esteja trabalhando
     work() {
-        if (!this.working && this.canWork) {
-            this.workStage = 0;
-            this.working = true;
-            this.character.setBusy(true);
+        if (this.canWork) {
+            if (!this.working) {
+                this.workStage = 0;
+                this.working = true;
+                this.character.setBusy(true);
 
-            //Mostra a barra de progresso
-            this.progressBorder.visible = true;
-            this.progress.visible = true;
+                //Mostra a barra de progresso
+                this.progressBorder.visible = true;
+                this.progress.visible = true;
+            }
+        } else {
+            this.character.speak('Eu preciso estar perto\nda mesa para trabalhar!');
         }
     }
 

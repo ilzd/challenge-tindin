@@ -1,7 +1,7 @@
 var game;
 var config;
 this.save = {
-    money: 1000,
+    money: 2000,
     itensBought: {
         tables: [],
         beds: [],

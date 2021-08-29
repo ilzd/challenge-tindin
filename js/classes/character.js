@@ -12,7 +12,7 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
         this.defineAnimations();
 
-        this.moveSpeed = 500; //Velocidade de movimento do personagem
+        this.moveSpeed = 200; //Velocidade de movimento do personagem
 
         //Redimensiona e reposiciona o body pra colisão ficar nos pés
         this.body.setSize(25, 25);
@@ -21,6 +21,15 @@ class Character extends Phaser.Physics.Arcade.Sprite {
         this.busy = false; //Se true, o personagem não pode andar nem interagir com nada
 
         this.setDepth(1); //Tras o personagem pra frente dos elementos que serão criados posterioemente
+
+        //Texto e variáveis auxiliares para o balão de fala do personagem
+        this.speakBubble = this.scene.add.text(0, 0, '', { fontSize: 20, color: '#000', backgroundColor: '#FFF' });
+        this.speakBubble.visible = false;
+        this.speakBubble.setDepth(2);
+        this.speakBubble.setOrigin(0.5, 0.5);
+        this.speaking = false;
+        this.speakStage = 0;
+        this.speakMaxStage = 100;
     }
 
     //Define as animações de movimentação para todas as direções
@@ -60,6 +69,15 @@ class Character extends Phaser.Physics.Arcade.Sprite {
     update() {
         if (!this.busy) {
             this.move();
+        }
+        if(this.speaking){
+            this.speakStage++;
+            this.speakBubble.x = this.x;
+            this.speakBubble.y = this.y - 60;
+            if(this.speakStage == this.speakMaxStage){
+                this.speaking = false;
+                this.speakBubble.visible = false;
+            }
         }
     }
 
@@ -115,5 +133,12 @@ class Character extends Phaser.Physics.Arcade.Sprite {
     setBusy(isBusy) {
         this.busy = isBusy;
         if (isBusy) this.anims.play('idle')
+    }
+
+    speak(text) {
+        this.speakStage = 0;
+        this.speaking = true;
+        this.speakBubble.setText(text);
+        this.speakBubble.visible = true;
     }
 }

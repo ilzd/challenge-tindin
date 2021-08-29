@@ -14,19 +14,19 @@ class ShopScene extends GameScene {
         //Lista de itens disponíveis
         this.itemsForSale = [
             { fileName: 'table1', pos: { x: 115, y: 600 }, price: 200, type: 'TABLE' },
-            { fileName: 'table2', pos: { x: 115, y: 490 }, price: 200, type: 'TABLE' },
-            { fileName: 'table3', pos: { x: 115, y: 380 }, price: 200, type: 'TABLE' },
+            { fileName: 'table2', pos: { x: 115, y: 490 }, price: 150, type: 'TABLE' },
+            { fileName: 'table3', pos: { x: 115, y: 380 }, price: 250, type: 'TABLE' },
             { fileName: 'bed1', pos: { x: 400, y: 585 }, price: 200, type: 'BED' },
             { fileName: 'bed2', pos: { x: 500, y: 585 }, price: 200, type: 'BED' },
             { fileName: 'bed3', pos: { x: 600, y: 585 }, price: 200, type: 'BED' },
             { fileName: 'tv1', pos: { x: 500, y: 230 }, price: 200, type: 'TV' },
-            { fileName: 'tv2', pos: { x: 600, y: 230 }, price: 200, type: 'TV' },
-            { fileName: 'desk1', pos: { x: 400, y: 230 }, price: 200, type: 'DESK' },
-            { fileName: 'mat1', pos: { x: 250, y: 400 }, price: 200, type: 'MAT' },
-            { fileName: 'mat2', pos: { x: 370, y: 400 }, price: 200, type: 'MAT' },
-            { fileName: 'mat3', pos: { x: 490, y: 400 }, price: 200, type: 'MAT' },
-            { fileName: 'closet1', pos: { x: 115, y: 230 }, price: 200, type: 'CLOSET' },
-            { fileName: 'closet2', pos: { x: 215, y: 230 }, price: 200, type: 'CLOSET' },
+            { fileName: 'tv2', pos: { x: 600, y: 230 }, price: 250, type: 'TV' },
+            { fileName: 'desk1', pos: { x: 400, y: 230 }, price: 130, type: 'DESK' },
+            { fileName: 'mat1', pos: { x: 250, y: 400 }, price: 100, type: 'MAT' },
+            { fileName: 'mat2', pos: { x: 370, y: 400 }, price: 100, type: 'MAT' },
+            { fileName: 'mat3', pos: { x: 490, y: 400 }, price: 100, type: 'MAT' },
+            { fileName: 'closet1', pos: { x: 115, y: 230 }, price: 190, type: 'CLOSET' },
+            { fileName: 'closet2', pos: { x: 215, y: 230 }, price: 190, type: 'CLOSET' },
         ];
 
         //Areas triggers de compra
@@ -180,7 +180,11 @@ class ShopScene extends GameScene {
                     default:
                         break;
                 }
+            } else {
+                this.character.speak('Eu não tenho dinheiro para isto,\npreciso trabalhar!');
             }
+        } else {
+            this.character.speak('Eu preciso me aproximar de\nalgo para comprar!');
         }
     }
 }

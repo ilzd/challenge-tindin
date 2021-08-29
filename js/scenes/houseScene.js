@@ -230,11 +230,15 @@ class HouseScene extends GameScene {
     //Tenta posicionar um item comprado caso as condições sejam atendidas
     place() {
         if (this.physics.overlap(this.character, this.tableArea)) {
-            if (save.itensBought.tables.length == 0) return;
+            if (save.itensBought.tables.length == 0) {
+                this.character.speak('Eu ainda não comprei\nnenhuma mesa!');
+                return;
+            }
             if (save.itensUsing.table == null) {
                 save.itensUsing.table = 0;
                 this.tableAreaDisplay.destroy();
             } else {
+                if(save.itensBought.tables.length == 1) this.character.speak('Eu não tenho outra mesa!');
                 save.itensUsing.table++;
                 if (save.itensUsing.table == save.itensBought.tables.length) {
                     save.itensUsing.table = 0;
@@ -244,11 +248,15 @@ class HouseScene extends GameScene {
             this.table = this.physics.add.staticImage(this.itemSpots.table.x, this.itemSpots.table.y, save.itensBought.tables[save.itensUsing.table]);
             this.physics.add.collider(this.table, this.character);
         } else if (this.physics.overlap(this.character, this.bedArea)) {
-            if (save.itensBought.beds.length == 0) return;
+            if (save.itensBought.beds.length == 0) {
+                this.character.speak('Eu ainda não comprei\nnenhuma cama!');
+                return;
+            }
             if (save.itensUsing.bed == null) {
                 save.itensUsing.bed = 0;
                 this.bedAreaDisplay.destroy();
             } else {
+                if(save.itensBought.beds.length == 1) this.character.speak('Eu não tenho outra cama!');
                 save.itensUsing.bed++;
                 if (save.itensUsing.bed == save.itensBought.beds.length) {
                     save.itensUsing.bed = 0;
@@ -258,11 +266,15 @@ class HouseScene extends GameScene {
             this.bed = this.physics.add.staticImage(this.itemSpots.bed.x, this.itemSpots.bed.y, save.itensBought.beds[save.itensUsing.bed]);
             this.physics.add.collider(this.bed, this.character);
         } else if (this.physics.overlap(this.character, this.tvArea)) {
-            if (save.itensBought.tvs.length == 0) return;
+            if (save.itensBought.tvs.length == 0) {
+                this.character.speak('Eu ainda não comprei\nnenhuma TV!');
+                return;
+            }
             if (save.itensUsing.tv == null) {
                 save.itensUsing.tv = 0;
                 this.tvAreaDisplay.destroy();
             } else {
+                if(save.itensBought.tvs.length == 1) this.character.speak('Eu não tenho outra TV!');
                 save.itensUsing.tv++;
                 if (save.itensUsing.tv == save.itensBought.tvs.length) {
                     save.itensUsing.tv = 0;
@@ -272,11 +284,15 @@ class HouseScene extends GameScene {
             this.tv = this.physics.add.staticImage(this.itemSpots.tv.x, this.itemSpots.tv.y, save.itensBought.tvs[save.itensUsing.tv]);
             this.physics.add.collider(this.tv, this.character);
         } else if (this.physics.overlap(this.character, this.deskArea)) {
-            if (save.itensBought.desks.length == 0) return;
+            if (save.itensBought.desks.length == 0) {
+                this.character.speak('Eu ainda não comprei\nnenhuma mesinha!');
+                return;
+            }
             if (save.itensUsing.desk == null) {
                 save.itensUsing.desk = 0;
                 this.deskAreaDisplay.destroy();
             } else {
+                if(save.itensBought.mats.length == 1) this.character.speak('Eu não tenho outra mesinha!');
                 save.itensUsing.desk++;
                 if (save.itensUsing.desk == save.itensBought.desks.length) {
                     save.itensUsing.desk = 0;
@@ -286,11 +302,15 @@ class HouseScene extends GameScene {
             this.desk = this.physics.add.staticImage(this.itemSpots.desk.x, this.itemSpots.desk.y, save.itensBought.desks[save.itensUsing.desk]);
             this.physics.add.collider(this.desk, this.character);
         } else if (this.physics.overlap(this.character, this.matArea)) {
-            if (save.itensBought.mats.length == 0) return;
+            if (save.itensBought.mats.length == 0) {
+                this.character.speak('Eu ainda não comprei\nnenhum tapete!');
+                return;
+            }
             if (save.itensUsing.mat == null) {
                 save.itensUsing.mat = 0;
                 this.matAreaDisplay.destroy();
             } else {
+                if(save.itensBought.mats.length == 1) this.character.speak('Eu não tenho outro tapete!');
                 save.itensUsing.mat++;
                 if (save.itensUsing.mat == save.itensBought.mats.length) {
                     save.itensUsing.mat = 0;
@@ -300,11 +320,15 @@ class HouseScene extends GameScene {
             this.mat = this.physics.add.staticImage(this.itemSpots.mat.x, this.itemSpots.mat.y, save.itensBought.mats[save.itensUsing.mat]);
             //this.physics.add.collider(this.mat, this.character);
         } else if (this.physics.overlap(this.character, this.closetArea)) {
-            if (save.itensBought.closets.length == 0) return;
+            if (save.itensBought.closets.length == 0) {
+                this.character.speak('Eu ainda não comprei\nnenhum armário!');
+                return;
+            }
             if (save.itensUsing.closet == null) {
                 save.itensUsing.closet = 0;
                 this.closetAreaDisplay.destroy();
             } else {
+                if(save.itensBought.closets.length == 1) this.character.speak('Eu não tenho outro armário!');
                 save.itensUsing.closet++;
                 if (save.itensUsing.closet == save.itensBought.closets.length) {
                     save.itensUsing.closet = 0;
