@@ -51,7 +51,7 @@ class GameScene extends Phaser.Scene {
         this.load.image('coin', 'assets/images/coin.png');
 
         this.load.image('debugimage', 'assets/images/debug.png');
-        
+
         this.load.audio('step', 'assets/audio/step.mp3');
     }
 
@@ -61,12 +61,33 @@ class GameScene extends Phaser.Scene {
         this.buildHUD();
         this.setSceneTriggers();
 
+        //Criando a imagem de transição entre cenas
+        this.transitioning = false;
+        this.transitionRect = this.add.rectangle(config.width / 2, config.height / 2, config.width, config.height);
+        this.transitionRect.setFillStyle(0x111111);
+        this.transitionRect.setOrigin(0.5, 0.5);
+        this.transitionRect.setDepth(2);
+        this.transitionRect.setScrollFactor(0);
+        this.tweens.add({
+            targets: this.transitionRect,
+            /* y: config.height,
+            x: config.width, */
+            scale: 0,
+            duration: 700,
+            ease: 'Cubic'
+        });
+
         this.character = new Character(this, this.spawnPoint.x, this.spawnPoint.y);
         this.cameras.main.startFollow(this.character);
 
         for (let i = 0; i < this.sceneTriggers.length; i++) {
             this.physics.add.overlap(this.character, this.sceneTriggers[i].trigger, function () {
-                this.scene.start(this.sceneTriggers[i].scene, { from: this.key });
+                if (!this.transitioning) {
+                    this.transitioning = true;
+                    this.character.setBusy(true);
+                    this.transitionTo(this.sceneTriggers[i].scene, { from: this.key });
+                }
+                //this.scene.start(this.sceneTriggers[i].scene, { from: this.key });
             }, null, this);
         }
 
@@ -153,5 +174,21 @@ class GameScene extends Phaser.Scene {
             fill: 0x00FF00,
             ease: 'Cubic'
         });
+    }
+
+    //Inicia a animação de transição e efetua a transição ao final
+    transitionTo(scene, data) {
+        let transition = this.tweens.add({
+            targets: this.transitionRect,
+           /*  y: {start: -config.height, to: 0},
+            x: {start: -config.width, to: 0}, */
+            scale: 1,
+            duration: 700,
+            ease: 'Cubic'
+        });
+
+        transition.on('complete', function () {
+            this.scene.start(scene, data);
+        }, this);
     }
 }

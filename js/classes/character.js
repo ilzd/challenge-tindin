@@ -121,15 +121,15 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
     checkAnimation(x, y) {
         //Verifica a direção da velocidade do personagem e executa a animação adequada
-        if (y < 0) {
-            this.anims.play('up', true);
-        } else if (y > 0) {
-            this.anims.play('down', true);
+        if (x < 0) {
+            this.anims.play('left', true);
+        } else if (x > 0) {
+            this.anims.play('right', true);
         } else {
-            if (x < 0) {
-                this.anims.play('left', true);
-            } else if (x > 0) {
-                this.anims.play('right', true);
+            if (y < 0) {
+                this.anims.play('up', true);
+            } else if (y > 0) {
+                this.anims.play('down', true);
             } else {
                 this.anims.play('idle');
             }
@@ -138,7 +138,10 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
     setBusy(isBusy) {
         this.busy = isBusy;
-        if (isBusy) this.anims.play('idle')
+        if (isBusy){
+            this.anims.play('idle');
+            this.setVelocity(0, 0);
+        }
     }
 
     //Seta o que é necessário para o balão de fala aparecer
